@@ -268,7 +268,8 @@ private fun ForgotPasswordButton(modifier: Modifier = Modifier) {
     val forgotPasswordUrl = "https://kitsu.io/password-reset"
 
     TextButton(
-        modifier = modifier,
+        modifier = modifier
+            .semantics { testTag = CredentialsTags.ForgotPasswordButton },
         onClick = { uriHandler.openUri(forgotPasswordUrl) }
     ) {
         Text(text = stringResource(id = StringResource.login_forgot_password))
@@ -286,7 +287,9 @@ private fun LoginButton(isEnabled: Boolean, isLoggingIn: Boolean, onLoginPressed
                 onLoginPressed()
                 keyboardController?.hide()
             }
-        }
+        },
+        modifier = Modifier
+            .semantics { testTag = CredentialsTags.LoginButton }
     ) {
         Text(text = stringResource(id = StringResource.login_login))
     }
@@ -336,5 +339,7 @@ object CredentialsTags {
     const val Root = "CredentialsRoot"
     const val Username = "CredentialsUsername"
     const val Password = "CredentialsPassword"
+    const val LoginButton = "CredentialsLoginButton"
+    const val ForgotPasswordButton = "CredentialsForgotPasswordButton"
     const val Snackbar = "CredentialsSnackbar"
 }

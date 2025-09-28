@@ -15,7 +15,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.chesire.nekome.app.series.collection.ui.FilterTags
 import com.chesire.nekome.app.series.collection.ui.SeriesCollectionTags
-import com.chesire.nekome.helpers.getResource
+import com.chesire.nekome.barista.helpers.getResource
 import com.chesire.nekome.resources.StringResource
 
 /**
