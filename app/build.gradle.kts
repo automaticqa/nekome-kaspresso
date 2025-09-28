@@ -16,7 +16,8 @@ android {
         targetSdk = libs.versions.sdk.get().toInt()
         versionCode = 24081508 // Date of build formatted as 'yyMMddHH'
         versionName = "2.2.3"
-        testInstrumentationRunner = "com.chesire.nekome.TestRunner"
+        testInstrumentationRunner = "com.chesire.nekome.kaspresso.KaspressoTestRunner"
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
         resourceConfigurations += listOf("en", "ja")
     }
     buildTypes {
@@ -46,6 +47,7 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
         animationsDisabled = true
     }
     packaging {
@@ -127,10 +129,32 @@ dependencies {
     androidTestImplementation(libs.androidx.arch.core.testing)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.androidx.test.espresso.contrib)
     androidTestImplementation(libs.androidx.test.espresso.intents)
+    androidTestImplementation(libs.androidx.test.espresso.web)
+    androidTestImplementation(libs.androidx.test.espresso.idling.resource)
     androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.google.hilt.android.testing)
     androidTestImplementation(libs.mockk.android)
+    
+    // Kaspresso dependencies
+    androidTestImplementation(libs.kaspresso)
+    androidTestImplementation(libs.kaspresso.compose.support)
+    androidTestImplementation(libs.kaspresso.allure.support)
+    
+    // Allure reporting
+    androidTestImplementation(libs.allure.kotlin.model)
+    androidTestImplementation(libs.allure.kotlin.commons)
+    androidTestImplementation(libs.allure.kotlin.junit4)
+    androidTestImplementation(libs.allure.kotlin.android)
+    
+    // Kakao Compose for screen objects
+    androidTestImplementation(libs.kakao.compose)
+    
+    // Test orchestrator
+    androidTestUtil(libs.androidx.test.orchestrator)
     kspAndroidTest(libs.google.hilt.android.compiler)
 }
