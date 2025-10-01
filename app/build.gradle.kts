@@ -34,6 +34,9 @@ android {
         named("debug") {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
+            isMinifyEnabled = false
+            isShrinkResources = false
+            isDebuggable = true
         }
         buildTypes.forEach {
             it.resValue("string", "version", defaultConfig.versionName!!)
