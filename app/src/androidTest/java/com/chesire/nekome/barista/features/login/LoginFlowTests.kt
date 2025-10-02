@@ -32,7 +32,7 @@ class LoginFlowTests : UITest() {
     lateinit var userApi: UserApi
 
     @Before
-    fun setup() {
+    fun setupMocks() {
         coEvery {
             authApi.login("Username", "Password")
         } coAnswers {

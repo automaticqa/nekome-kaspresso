@@ -144,6 +144,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.google.hilt.android.testing)
     androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.squareup.okhttp3.mockwebserver)
     
     // Kaspresso dependencies
     androidTestImplementation(libs.kaspresso)

@@ -25,17 +25,80 @@ import com.chesire.nekome.core.preferences.SeriesPreferences
 import com.chesire.nekome.database.dao.SeriesDao
 import com.chesire.nekome.database.dao.UserDao
 import com.chesire.nekome.datasource.auth.local.AuthProvider
+import com.chesire.nekome.datasource.auth.remote.AuthApi
+import com.chesire.nekome.datasource.search.remote.SearchApi
+import com.chesire.nekome.datasource.series.remote.SeriesApi
+import com.chesire.nekome.datasource.trending.remote.TrendingApi
+import com.chesire.nekome.datasource.user.remote.UserApi
+import com.chesire.nekome.datasource.series.SeriesRepository
+import com.chesire.nekome.datasource.series.UserProvider
+import com.chesire.nekome.datasource.series.SeriesMapper
+import com.chesire.nekome.binders.UserProviderBinder
+import com.chesire.nekome.database.RoomDB
+import com.chesire.nekome.injection.AuthModule
+import com.chesire.nekome.injection.DatabaseModule
+import com.chesire.nekome.injection.LibraryModule
+import com.chesire.nekome.injection.SeriesModule
+import com.chesire.nekome.injection.SearchModule
+import com.chesire.nekome.injection.TrendingModule
+import com.chesire.nekome.injection.UserModule
+import com.chesire.nekome.kaspresso.common.MockWebServerHolder
+import com.chesire.nekome.kaspresso.common.NetworkMode
+import com.chesire.nekome.kaspresso.common.NetworkModeHolder
 import com.chesire.nekome.ui.MainActivity
+import com.chesire.nekome.kitsu.KITSU_URL
+import com.chesire.nekome.kitsu.adapters.ImageModelAdapter
+import com.chesire.nekome.kitsu.adapters.SeriesStatusAdapter
+import com.chesire.nekome.kitsu.adapters.SeriesTypeAdapter
+import com.chesire.nekome.kitsu.adapters.SubtypeAdapter
+import com.chesire.nekome.kitsu.auth.KitsuAuth
+import com.chesire.nekome.kitsu.auth.KitsuAuthService
+import com.chesire.nekome.kitsu.library.KitsuLibrary
+import com.chesire.nekome.kitsu.library.KitsuLibraryService
+import com.chesire.nekome.kitsu.library.adapter.UserSeriesStatusAdapter
+import com.chesire.nekome.kitsu.search.KitsuSearch
+import com.chesire.nekome.kitsu.search.KitsuSearchService
+import com.chesire.nekome.kitsu.trending.KitsuTrending
+import com.chesire.nekome.kitsu.trending.KitsuTrendingService
+import com.chesire.nekome.kitsu.user.KitsuUser
+import com.chesire.nekome.kitsu.user.KitsuUserService
+import com.chesire.nekome.kitsu.user.adapter.RatingSystemAdapter
+import com.squareup.moshi.Moshi
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import dagger.Reusable
+import dagger.hilt.InstallIn
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
+import javax.inject.Singleton
+import android.content.Context
+import androidx.room.Room
+import dagger.hilt.android.qualifiers.ApplicationContext
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 
 @HiltAndroidTest
-abstract class BaseTestSetup : TestCase(
+@UninstallModules(
+    AuthModule::class,
+    UserModule::class,
+    LibraryModule::class,
+    SeriesModule::class,
+    SearchModule::class,
+    TrendingModule::class,
+    DatabaseModule::class
+)
+abstract class BaseTestSetup(
+    open val networkMode: NetworkMode = NetworkMode.ONLINE
+) : TestCase(
     kaspressoBuilder = Kaspresso.Builder
         .withForcedAllureSupport(shouldRecordVideo = false) {
             flakySafetyParams = FlakySafetyParams.custom(
@@ -110,6 +173,14 @@ abstract class BaseTestSetup : TestCase(
 
     @Before
     open fun setUp() {
+        // the following order is crucial
+        NetworkModeHolder.mode = networkMode
+        
+        if (networkMode == NetworkMode.MOCKWEBSERVER) {
+            MockWebServerHolder.start()
+        }
+        
+        // only now perform hilt injectionn
         hiltRule.inject()
 
         runBlocking {
@@ -132,6 +203,11 @@ abstract class BaseTestSetup : TestCase(
     @After
     open fun tearDown() {
         composeTestRule.waitForIdle()
+        
+        // Остановить MockWebServer если был запущен
+        if (networkMode == NetworkMode.MOCKWEBSERVER) {
+            MockWebServerHolder.shutdown()
+        }
     }
 
     protected fun startApp() {
@@ -158,5 +234,165 @@ abstract class BaseTestSetup : TestCase(
         launchActivity: Boolean = false
     ) = object : ActivityTestRule<T>(T::class.java, initialTouchMode, launchActivity) {
         override fun getActivityIntent(): Intent = intent
+    }
+
+    @Module
+    @InstallIn(SingletonComponent::class)
+    abstract class KaspressoNetworkModule {
+        
+        @Binds
+        abstract fun bindAuthApi(api: KitsuAuth): AuthApi
+        
+        @Binds
+        abstract fun bindUserApi(api: KitsuUser): UserApi
+        
+        @Binds
+        abstract fun bindSeriesApi(api: KitsuLibrary): SeriesApi
+        
+        @Binds
+        abstract fun bindSearchApi(api: KitsuSearch): SearchApi
+        
+        @Binds
+        abstract fun bindTrendingApi(api: KitsuTrending): TrendingApi
+        
+        @Binds
+        abstract fun bindUserProvider(binder: UserProviderBinder): UserProvider
+        
+        companion object {
+            
+            @Provides
+            @Reusable
+            fun provideSeriesRepository(
+                dao: SeriesDao,
+                api: SeriesApi,
+                user: UserProvider,
+                map: SeriesMapper
+            ) = SeriesRepository(dao, api, user, map)
+            
+            @Provides
+            @Reusable
+            fun provideSeriesMapper() = SeriesMapper()
+            
+            private fun getBaseUrl(): String {
+                return when (NetworkModeHolder.mode) {
+                    NetworkMode.ONLINE -> KITSU_URL
+                    NetworkMode.MOCKWEBSERVER -> MockWebServerHolder.baseUrl.toString()
+                }
+            }
+            
+            @Provides
+            @Reusable
+            fun providesAuthService(): KitsuAuthService {
+                return Retrofit.Builder()
+                    .baseUrl(getBaseUrl())
+                    .client(OkHttpClient())
+                    .addConverterFactory(
+                        MoshiConverterFactory.create(Moshi.Builder().build())
+                    )
+                    .build()
+                    .create(KitsuAuthService::class.java)
+            }
+            
+            @Provides
+            @Reusable
+            fun providesUserService(
+                httpClient: OkHttpClient
+            ): KitsuUserService {
+                val moshi = Moshi.Builder()
+                    .add(RatingSystemAdapter())
+                    .add(ImageModelAdapter())
+                    .build()
+                
+                return Retrofit.Builder()
+                    .baseUrl(getBaseUrl())
+                    .client(httpClient)
+                    .addConverterFactory(MoshiConverterFactory.create(moshi))
+                    .build()
+                    .create(KitsuUserService::class.java)
+            }
+            
+            @Provides
+            @Reusable
+            fun providesLibraryService(
+                httpClient: OkHttpClient
+            ): KitsuLibraryService {
+                val moshi = Moshi.Builder()
+                    .add(ImageModelAdapter())
+                    .add(SeriesStatusAdapter())
+                    .add(SeriesTypeAdapter())
+                    .add(SubtypeAdapter())
+                    .add(UserSeriesStatusAdapter())
+                    .build()
+                
+                return Retrofit.Builder()
+                    .baseUrl(getBaseUrl())
+                    .client(httpClient)
+                    .addConverterFactory(MoshiConverterFactory.create(moshi))
+                    .build()
+                    .create(KitsuLibraryService::class.java)
+            }
+            
+            @Provides
+            @Reusable
+            fun providesSearchService(
+                httpClient: OkHttpClient
+            ): KitsuSearchService {
+                val moshi = Moshi.Builder()
+                    .add(ImageModelAdapter())
+                    .add(SeriesStatusAdapter())
+                    .add(SeriesTypeAdapter())
+                    .add(SubtypeAdapter())
+                    .build()
+                
+                return Retrofit.Builder()
+                    .baseUrl(getBaseUrl())
+                    .client(httpClient)
+                    .addConverterFactory(MoshiConverterFactory.create(moshi))
+                    .build()
+                    .create(KitsuSearchService::class.java)
+            }
+            
+            @Provides
+            @Reusable
+            fun providesTrendingService(
+                httpClient: OkHttpClient
+            ): KitsuTrendingService {
+                val moshi = Moshi.Builder()
+                    .add(ImageModelAdapter())
+                    .add(SeriesStatusAdapter())
+                    .add(SeriesTypeAdapter())
+                    .add(SubtypeAdapter())
+                    .build()
+                
+                return Retrofit.Builder()
+                    .baseUrl(getBaseUrl())
+                    .client(httpClient)
+                    .addConverterFactory(MoshiConverterFactory.create(moshi))
+                    .build()
+                    .create(KitsuTrendingService::class.java)
+            }
+        }
+    }
+
+    @Module
+    @InstallIn(SingletonComponent::class)
+    object KaspressoDatabaseModule {
+        
+        @Provides
+        @Singleton
+        fun provideInMemoryDatabase(
+            @ApplicationContext context: Context
+        ): RoomDB = Room.inMemoryDatabaseBuilder(
+            context,
+            RoomDB::class.java
+        ).build()
+        
+        @Provides
+        @Singleton
+        fun provideSeriesDao(db: RoomDB): SeriesDao = db.series()
+        
+        @Provides
+        @Singleton
+        fun provideUserDao(db: RoomDB): UserDao = db.user()
     }
 }
