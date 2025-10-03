@@ -1,23 +1,21 @@
 package com.chesire.nekome.kaspresso.tests.login
 
 import dagger.hilt.android.testing.HiltAndroidTest
-import com.chesire.nekome.kaspresso.common.NetworkMode
 import com.chesire.nekome.kaspresso.screens.collections.AnimeCollectionScreen
 import com.chesire.nekome.kaspresso.screens.login.LoginFormScreen
-import com.chesire.nekome.kaspresso.tests.BaseTestSetup
+import com.chesire.nekome.kaspresso.tests.OnlineBaseTestSetup
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import org.junit.Before
 import org.junit.Test
 
 @HiltAndroidTest
-class LoginTest : BaseTestSetup() {
+class LoginTest : OnlineBaseTestSetup() {
 
     override val startLoggedIn = false
-    override val networkMode = NetworkMode.ONLINE
 
     @Before
     fun before() {
-        startApp()
+        //startApp()
     }
 
     /**

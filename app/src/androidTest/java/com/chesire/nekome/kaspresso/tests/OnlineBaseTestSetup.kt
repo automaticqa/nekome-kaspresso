@@ -96,7 +96,7 @@ import org.junit.Rule
     TrendingModule::class,
     DatabaseModule::class
 )
-abstract class BaseTestSetup(
+abstract class OnlineBaseTestSetup(
     open val networkMode: NetworkMode = NetworkMode.ONLINE
 ) : TestCase(
     kaspressoBuilder = Kaspresso.Builder
@@ -169,14 +169,13 @@ abstract class BaseTestSetup(
     @Inject
     lateinit var seriesPreferences: SeriesPreferences
 
-    open val startLoggedIn: Boolean = true
+    open val startLoggedIn: Boolean = false
 
     @Before
     open fun setUp() {
-        // the following order is crucial
         NetworkModeHolder.mode = networkMode
         
-        if (networkMode == NetworkMode.MOCKWEBSERVER) {
+        if (networkMode == NetworkMode.OFFLINE) {
             MockWebServerHolder.start()
         }
         
@@ -204,14 +203,13 @@ abstract class BaseTestSetup(
     open fun tearDown() {
         composeTestRule.waitForIdle()
         
-        // Остановить MockWebServer если был запущен
-        if (networkMode == NetworkMode.MOCKWEBSERVER) {
+        if (networkMode == NetworkMode.OFFLINE) {
             MockWebServerHolder.shutdown()
         }
     }
 
-    protected fun startApp() {
-        activityRule.launchActivity(null)
+    fun setOnline() {
+        NetworkModeHolder.mode = NetworkMode.ONLINE
     }
 
     protected open fun providePermissions(): Array<String> {
@@ -236,6 +234,9 @@ abstract class BaseTestSetup(
         override fun getActivityIntent(): Intent = intent
     }
 
+
+
+    // TODO: MOVE IT TO SEPARATED MODULE
     @Module
     @InstallIn(SingletonComponent::class)
     abstract class KaspressoNetworkModule {
@@ -276,7 +277,7 @@ abstract class BaseTestSetup(
             private fun getBaseUrl(): String {
                 return when (NetworkModeHolder.mode) {
                     NetworkMode.ONLINE -> KITSU_URL
-                    NetworkMode.MOCKWEBSERVER -> MockWebServerHolder.baseUrl.toString()
+                    NetworkMode.OFFLINE -> MockWebServerHolder.baseUrl.toString()
                 }
             }
             
