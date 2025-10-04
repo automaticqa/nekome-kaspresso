@@ -133,7 +133,7 @@ private fun Render(
                 title = {
                     Text(
                         text = stringResource(id = state.value.screenTitle),
-                        modifier = Modifier.semantics { testTag = SeriesCollectionTags.Title }
+                        modifier = Modifier.semantics { testTag = SeriesCollectionTags.SeriesCollectionTitle }
                     )
                 },
                 actions = {
@@ -541,7 +541,7 @@ private fun Preview() {
 
 object SeriesCollectionTags {
     const val Root = "SeriesCollectionRoot"
-    const val Title = "SeriesCollectionTitle"
+    const val SeriesCollectionTitle = "SeriesCollectionTitle"
     const val EmptyView = "SeriesCollectionEmptyView"
     const val RefreshContainer = "SeriesCollectionRefreshContainer"
     const val SearchFab = "SeriesCollectionSearchFab"

@@ -241,7 +241,9 @@ private fun SearchResults(
 ) {
     if (resultModels.isNotEmpty()) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .semantics { testTag = SearchTags.ResultsList },
             contentPadding = PaddingValues(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
@@ -262,6 +264,7 @@ private fun ResultItem(model: ResultModel, onSeriesTrack: (ResultModel) -> Unit)
             .fillMaxWidth()
             .height(120.dp)
             .alpha(if (model.canTrack) 1.0f else 0.3f)
+            .semantics { testTag = "${SearchTags.ResultItem}_${model.id}" }
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             if (model.isTracking) {
@@ -293,7 +296,9 @@ private fun ResultItem(model: ResultModel, onSeriesTrack: (ResultModel) -> Unit)
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .semantics { testTag = "${SearchTags.ResultItemTitle}_${model.id}" }
                     )
                     Text(
                         text = model.synopsis,
@@ -311,7 +316,9 @@ private fun ResultItem(model: ResultModel, onSeriesTrack: (ResultModel) -> Unit)
             }
             if (model.canTrack && !model.isTracking) {
                 IconButton(
-                    modifier = Modifier.align(Alignment.BottomEnd),
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .semantics { testTag = "${SearchTags.ResultItemAddButton}_${model.id}" },
                     onClick = { onSeriesTrack(model) }
                 ) {
                     Icon(
@@ -406,4 +413,8 @@ object SearchTags {
     const val Manga = "SearchManga"
     const val Search = "SearchSearch"
     const val Snackbar = "SearchSnackbar"
+    const val ResultsList = "SearchResultsList"
+    const val ResultItem = "SearchResultItem"
+    const val ResultItemTitle = "SearchResultItemTitle"
+    const val ResultItemAddButton = "SearchResultItemAddButton"
 }

@@ -34,12 +34,16 @@ class UserRepository @Inject constructor(
      * Updates the stored user in the database, data will be funneled to the [user].
      */
     suspend fun refreshUser(): Result<Unit, Unit> {
+        println("okhttp: [UserRepository] refreshUser() - Calling userApi.getUserDetails()...")
         return userApi.getUserDetails()
             .onSuccess {
+                println("okhttp: [UserRepository] refreshUser() - API success, user: id=${it.userId}, name=${it.name}")
                 val model = map.toUserEntity(it)
                 userDao.insert(model)
+                println("okhttp: [UserRepository] refreshUser() - User saved to DB")
             }
             .onFailure {
+                println("okhttp: [UserRepository] refreshUser() - FAILED: API error")
                 Timber.e("Error refreshing user")
             }
             .mapEither(
@@ -51,5 +55,9 @@ class UserRepository @Inject constructor(
     /**
      * Retrieves the user id from the database.
      */
-    suspend fun retrieveUserId() = userDao.retrieveUserId(Service.Kitsu)
+    suspend fun retrieveUserId(): Int? {
+        val userId = userDao.retrieveUserId(Service.Kitsu)
+        println("okhttp: [UserRepository] retrieveUserId() - Result: $userId")
+        return userId
+    }
 }

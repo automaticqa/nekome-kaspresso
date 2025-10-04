@@ -145,22 +145,21 @@ dependencies {
     androidTestImplementation(libs.google.hilt.android.testing)
     androidTestImplementation(libs.mockk.android)
     androidTestImplementation(libs.squareup.okhttp3.mockwebserver)
-    
-    // Kaspresso dependencies
     androidTestImplementation(libs.kaspresso)
     androidTestImplementation(libs.kaspresso.compose.support)
     androidTestImplementation(libs.kaspresso.allure.support)
-    
-    // Allure reporting
     androidTestImplementation(libs.allure.kotlin.model)
     androidTestImplementation(libs.allure.kotlin.commons)
     androidTestImplementation(libs.allure.kotlin.junit4)
     androidTestImplementation(libs.allure.kotlin.android)
-    
-    // Kakao Compose for screen objects
     androidTestImplementation(libs.kakao.compose)
-    
-    // Test orchestrator
+    androidTestImplementation(libs.androidx.compose.ui.tooling)
+    androidTestImplementation(libs.androidx.compose.ui.tooling.preview)
+
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.tooling.preview)
+
+
     androidTestUtil(libs.androidx.test.orchestrator)
     kspAndroidTest(libs.google.hilt.android.compiler)
 }

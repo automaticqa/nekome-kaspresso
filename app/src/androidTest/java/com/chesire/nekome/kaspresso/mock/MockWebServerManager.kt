@@ -1,22 +1,58 @@
 package com.chesire.nekome.kaspresso.mock
 
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import okhttp3.HttpUrl
 import okhttp3.mockwebserver.MockWebServer
 
 const val DEFAULT_200_CODE_RESPONSE = 200
-const val ERROR_400_CODE_RESPONSE = 400
-const val ERROR_403_CODE_RESPONSE = 403
+const val HTTP_204_NO_CONTENT = 204
 
 object MockWebServerManager {
     private lateinit var mockWebServer: MockWebServer
 
-    fun start(port: Int = 8080) {
-        mockWebServer = MockWebServer()
-        mockWebServer.dispatcher = MockedDispatcher()
-        mockWebServer.start(port)
+    @Volatile private var started = false
+    @Volatile private var ready = CountDownLatch(1)
+
+    @Synchronized
+    fun start(port: Int = 0) {
+        if (started) return
+
+        mockWebServer = MockWebServer().apply {
+            dispatcher = MockedDispatcher()
+            start(port)
+        }
+
+        mockWebServer.url("/")
+
+        started = true
+        ready.countDown()
+        println("okhttp: MockWebServerManager.start() - MockWebServer started on ${mockWebServer.hostName}:${mockWebServer.port}")
     }
 
+    fun awaitReadyOrThrow(timeoutMs: Long = 5_000) {
+        val ok = ready.await(timeoutMs, TimeUnit.MILLISECONDS)
+        check(ok && started) { "MockWebServer not ready within ${timeoutMs}ms" }
+    }
+
+    val baseUrl: HttpUrl
+        get() {
+            check(started) { "MockWebServer not started yet" }
+            return mockWebServer.url("/")
+        }
+
+    fun awaitAndGetBaseUrl(timeoutMs: Long = 5_000): String {
+        awaitReadyOrThrow(timeoutMs)
+        return baseUrl.toString()
+    }
+
+    @Synchronized
     fun shutdown() {
-        mockWebServer.shutdown()
+        if (started) {
+            mockWebServer.shutdown()
+            started = false
+            ready = CountDownLatch(1)
+        }
     }
 
     fun mockPost(
@@ -26,52 +62,20 @@ object MockWebServerManager {
         repeatable: Boolean = false,
     ) = mockRequest(POST, requestPath, responseJsonFile, responseCode, repeatable)
 
-    fun mockPut(
-        requestPath: String,
-        responseJsonFile: String,
-        responseCode: Int = DEFAULT_200_CODE_RESPONSE,
-        repeatable: Boolean = false,
-    ) = mockRequest(PUT, requestPath, responseJsonFile, responseCode, repeatable)
-
     fun mockGet(
         requestPath: String,
         responseJsonFile: String,
         responseCode: Int = DEFAULT_200_CODE_RESPONSE,
         repeatable: Boolean = false,
-    ) = mockRequest(GET, requestPath, responseJsonFile, responseCode, repeatable)
+        queryParams: Map<String, String> = emptyMap()
+    ) = mockRequest(GET, requestPath, responseJsonFile, responseCode, repeatable, queryParams)
 
-    fun mockRequests(
-        requestMethod: String,
+    fun mockDelete(
         requestPath: String,
-        responseJsonFiles: List<String>,
-        responseCode: Int = DEFAULT_200_CODE_RESPONSE,
+        responseJsonFile: String = "",
+        responseCode: Int = HTTP_204_NO_CONTENT,
         repeatable: Boolean = false,
-    ) = responseJsonFiles.forEach { file ->
-        mockRequest(
-            requestMethod,
-            requestPath,
-            file,
-            responseCode,
-            repeatable
-        )
-    }
-
-    fun mockRequests(
-        requestMethod: String,
-        requestPath: String,
-        responseMappings: Map<String, Int>,
-        repeatable: Boolean = false,
-    ) {
-        responseMappings.forEach { (file, code) ->
-            mockRequest(
-                requestMethod,
-                requestPath,
-                file,
-                code,
-                repeatable
-            )
-        }
-    }
+    ) = mockRequest(DELETE, requestPath, responseJsonFile, responseCode, repeatable)
 
     fun mockRequest(
         requestMethod: String,
@@ -79,9 +83,10 @@ object MockWebServerManager {
         responseJsonFile: String,
         responseCode: Int = DEFAULT_200_CODE_RESPONSE,
         repeatable: Boolean = false,
+        queryParams: Map<String, String> = emptyMap()
     ) {
         mockRequest(
-            MockedRequest(requestPath, requestMethod),
+            MockedRequest(requestPath, requestMethod, queryParams),
             MockedResponse(responseJsonFile, responseCode, repeatable)
         )
     }
@@ -109,4 +114,5 @@ object MockWebServerManager {
     const val GET = "GET"
     const val POST = "POST"
     const val PUT = "PUT"
+    const val DELETE = "DELETE"
 }

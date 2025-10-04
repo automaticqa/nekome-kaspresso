@@ -6,6 +6,8 @@ import com.chesire.nekome.app.login.syncing.core.RetrieveAvatarUseCase
 import com.chesire.nekome.app.login.syncing.core.SyncSeriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -30,11 +32,20 @@ class SyncingViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            state = state.copy(avatar = retrieveAvatar())
-        }
-        viewModelScope.launch {
-            syncSeries()
-            state = state.copy(finishedSyncing = true)
+            val avatarDeferred = async {
+                retrieveAvatar()
+            }
+
+            val seriesDeferred = async {
+                syncSeries()
+            }
+
+            val avatar = avatarDeferred.await()
+            seriesDeferred.await()
+
+            delay(200)
+
+            state = state.copy(avatar = avatar, finishedSyncing = true)
         }
     }
 

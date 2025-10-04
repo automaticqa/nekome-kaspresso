@@ -1,27 +1,17 @@
 package com.chesire.nekome.barista
 
-import android.content.Context
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.room.Room
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.adevinta.android.barista.rule.cleardata.ClearDatabaseRule
 import com.adevinta.android.barista.rule.cleardata.ClearPreferencesRule
 import com.chesire.nekome.core.preferences.ApplicationPreferences
 import com.chesire.nekome.core.preferences.SeriesPreferences
-import com.chesire.nekome.database.RoomDB
 import com.chesire.nekome.database.dao.SeriesDao
 import com.chesire.nekome.database.dao.UserDao
 import com.chesire.nekome.datasource.auth.local.AuthProvider
-import com.chesire.nekome.datasource.auth.remote.AuthApi
-import com.chesire.nekome.datasource.search.remote.SearchApi
-import com.chesire.nekome.datasource.series.remote.SeriesApi
-import com.chesire.nekome.datasource.trending.remote.TrendingApi
-import com.chesire.nekome.datasource.user.remote.UserApi
-import com.chesire.nekome.datasource.series.SeriesRepository
-import com.chesire.nekome.datasource.series.UserProvider
-import com.chesire.nekome.datasource.series.SeriesMapper
+import com.chesire.nekome.injection.TestFramework
+import com.chesire.nekome.injection.TestFrameworkHolder
 import com.chesire.nekome.barista.helpers.createTestUser
 import com.chesire.nekome.barista.helpers.login
 import com.chesire.nekome.barista.helpers.logout
@@ -33,17 +23,10 @@ import com.chesire.nekome.injection.SearchModule
 import com.chesire.nekome.injection.TrendingModule
 import com.chesire.nekome.injection.UserModule
 import com.chesire.nekome.ui.MainActivity
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
-import dagger.hilt.components.SingletonComponent
-import io.mockk.mockk
 import javax.inject.Inject
-import javax.inject.Singleton
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
@@ -63,7 +46,6 @@ import org.junit.runner.RunWith
 )
 @RunWith(AndroidJUnit4::class)
 abstract class UITest {
-
     @Suppress("LeakingThis")
     @get:Rule
     val hilt = HiltAndroidRule(this)
@@ -103,6 +85,8 @@ abstract class UITest {
      */
     @Before
     open fun setUp() {
+        TestFrameworkHolder.framework = TestFramework.BARISTA
+
         hilt.inject()
 
         runBlocking {
@@ -127,70 +111,4 @@ abstract class UITest {
         Thread.sleep(200)
     }
 
-    /**
-     * Nested Hilt module providing MockK-backed API fakes for UI tests.
-     * Registered into the SingletonComponent and visible only in androidTest.
-     */
-    @Module
-    @InstallIn(SingletonComponent::class)
-    object BaristaMocksModule {
-        
-        @Provides
-        @Singleton
-        fun provideAuthApi(): AuthApi = mockk(relaxed = true)
-        
-        @Provides
-        @Singleton
-        fun provideUserApi(): UserApi = mockk(relaxed = true)
-        
-        @Provides
-        @Singleton
-        fun provideSeriesApi(): SeriesApi = mockk(relaxed = true)
-        
-        @Provides
-        @Singleton
-        fun provideSearchApi(): SearchApi = mockk(relaxed = true)
-        
-        @Provides
-        @Singleton
-        fun provideTrendingApi(): TrendingApi = mockk(relaxed = true)
-        
-        @Provides
-        @Singleton
-        fun provideUserProvider(): UserProvider = mockk(relaxed = true)
-        
-        @Provides
-        @Singleton
-        fun provideSeriesMapper(): SeriesMapper = mockk(relaxed = true)
-        
-        @Provides
-        @Singleton
-        fun provideSeriesRepository(): SeriesRepository = mockk(relaxed = true)
-    }
-
-    /**
-     * Nested Hilt module providing MockK-backed API fakes for UI tests.
-     * Registered into the SingletonComponent and visible only in androidTest
-     */
-    @Module
-    @InstallIn(SingletonComponent::class)
-    object BaristaInMemoryDbModule {
-        
-        @Provides
-        @Singleton
-        fun provideInMemoryDatabase(
-            @ApplicationContext context: Context
-        ): RoomDB = Room.inMemoryDatabaseBuilder(
-            context,
-            RoomDB::class.java
-        ).build()
-        
-        @Provides
-        @Singleton
-        fun provideSeriesDao(db: RoomDB): SeriesDao = db.series()
-        
-        @Provides
-        @Singleton
-        fun provideUserDao(db: RoomDB): UserDao = db.user()
-    }
 }

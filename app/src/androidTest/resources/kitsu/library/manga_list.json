@@ -1,0 +1,386 @@
+{
+  "data": [
+    {
+      "id": "105118418",
+      "type": "libraryEntries",
+      "links": {
+        "self": "https://kitsu.app/api/edge/library-entries/105118418"
+      },
+      "attributes": {
+        "status": "completed",
+        "progress": 0,
+        "startedAt": "2025-09-26T19:34:41.731Z",
+        "finishedAt": "2025-09-26T19:34:41.731Z",
+        "ratingTwenty": null
+      },
+      "relationships": {
+        "manga": {
+          "links": {
+            "self": "https://kitsu.app/api/edge/library-entries/105118418/relationships/manga",
+            "related": "https://kitsu.app/api/edge/library-entries/105118418/manga"
+          },
+          "data": {
+            "type": "manga",
+            "id": "8"
+          }
+        }
+      }
+    },
+    {
+      "id": "105118430",
+      "type": "libraryEntries",
+      "links": {
+        "self": "https://kitsu.app/api/edge/library-entries/105118430"
+      },
+      "attributes": {
+        "status": "completed",
+        "progress": 0,
+        "startedAt": "2025-09-26T19:36:38.238Z",
+        "finishedAt": "2025-09-26T19:36:38.238Z",
+        "ratingTwenty": null
+      },
+      "relationships": {
+        "manga": {
+          "links": {
+            "self": "https://kitsu.app/api/edge/library-entries/105118430/relationships/manga",
+            "related": "https://kitsu.app/api/edge/library-entries/105118430/manga"
+          },
+          "data": {
+            "type": "manga",
+            "id": "68"
+          }
+        }
+      }
+    },
+    {
+      "id": "105118429",
+      "type": "libraryEntries",
+      "links": {
+        "self": "https://kitsu.app/api/edge/library-entries/105118429"
+      },
+      "attributes": {
+        "status": "completed",
+        "progress": 271,
+        "startedAt": "2025-09-26T19:36:26.904Z",
+        "finishedAt": "2025-09-26T19:36:26.904Z",
+        "ratingTwenty": null
+      },
+      "relationships": {
+        "manga": {
+          "links": {
+            "self": "https://kitsu.app/api/edge/library-entries/105118429/relationships/manga",
+            "related": "https://kitsu.app/api/edge/library-entries/105118429/manga"
+          },
+          "data": {
+            "type": "manga",
+            "id": "40815"
+          }
+        }
+      }
+    },
+    {
+      "id": "105118432",
+      "type": "libraryEntries",
+      "links": {
+        "self": "https://kitsu.app/api/edge/library-entries/105118432"
+      },
+      "attributes": {
+        "status": "completed",
+        "progress": 346,
+        "startedAt": "2025-09-26T19:36:40.165Z",
+        "finishedAt": "2025-09-26T19:36:40.165Z",
+        "ratingTwenty": null
+      },
+      "relationships": {
+        "manga": {
+          "links": {
+            "self": "https://kitsu.app/api/edge/library-entries/105118432/relationships/manga",
+            "related": "https://kitsu.app/api/edge/library-entries/105118432/manga"
+          },
+          "data": {
+            "type": "manga",
+            "id": "24208"
+          }
+        }
+      }
+    },
+    {
+      "id": "105118431",
+      "type": "libraryEntries",
+      "links": {
+        "self": "https://kitsu.app/api/edge/library-entries/105118431"
+      },
+      "attributes": {
+        "status": "completed",
+        "progress": 179,
+        "startedAt": "2025-09-26T19:36:39.352Z",
+        "finishedAt": "2025-09-26T19:36:39.352Z",
+        "ratingTwenty": null
+      },
+      "relationships": {
+        "manga": {
+          "links": {
+            "self": "https://kitsu.app/api/edge/library-entries/105118431/relationships/manga",
+            "related": "https://kitsu.app/api/edge/library-entries/105118431/manga"
+          },
+          "data": {
+            "type": "manga",
+            "id": "26401"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "8",
+      "type": "manga",
+      "links": {
+        "self": "https://kitsu.app/api/edge/manga/8"
+      },
+      "attributes": {
+        "slug": "berserk",
+        "titles": {
+          "en": "Berserk",
+          "en_jp": "Berserk",
+          "en_us": "Berserk",
+          "ja_jp": "ベルセルク"
+        },
+        "canonicalTitle": "Berserk",
+        "startDate": "1989-08-25",
+        "endDate": null,
+        "subtype": "manga",
+        "status": "current",
+        "posterImage": {
+          "tiny": "https://media.kitsu.app/manga/8/poster_image/tiny-ad1df8a063d11baf9fda08160deffc00.jpeg",
+          "large": "https://media.kitsu.app/manga/8/poster_image/large-f598ed525107bcb69ebda5bf36c6910d.jpeg",
+          "small": "https://media.kitsu.app/manga/8/poster_image/small-bdf7be96b4337627856b36e0be0241fb.jpeg",
+          "medium": "https://media.kitsu.app/manga/8/poster_image/medium-8edd6ddb0c6ec34a54521487ee81fb02.jpeg",
+          "original": "https://media.kitsu.app/manga/8/poster_image/67d602c20d1bf0eeb43e1a363c59ed5b.jpg",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "chapterCount": null
+      }
+    },
+    {
+      "id": "68",
+      "type": "manga",
+      "links": {
+        "self": "https://kitsu.app/api/edge/manga/68"
+      },
+      "attributes": {
+        "slug": "hunter-x-hunter",
+        "titles": {
+          "en": "Hunter x Hunter",
+          "en_jp": "Hunter x Hunter",
+          "en_us": "Hunter x Hunter",
+          "ja_jp": "HUNTER×HUNTER"
+        },
+        "canonicalTitle": "Hunter x Hunter",
+        "startDate": "1998-03-03",
+        "endDate": null,
+        "subtype": "manga",
+        "status": "current",
+        "posterImage": {
+          "tiny": "https://media.kitsu.app/manga/68/poster_image/tiny-0383f78cbad05c48e3f13612fe68c8c3.jpeg",
+          "large": "https://media.kitsu.app/manga/68/poster_image/large-b9e2a0a9edbdabcd2434d638a08e0152.jpeg",
+          "small": "https://media.kitsu.app/manga/68/poster_image/small-25344519469412e6fb3c1c1282a2a681.jpeg",
+          "medium": "https://media.kitsu.app/manga/68/poster_image/medium-b42aff956372c79398a7d469feda6462.jpeg",
+          "original": "https://media.kitsu.app/manga/68/poster_image/91e8229dd9e1df0b1ed5b14fe3668013.webp",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "chapterCount": null
+      }
+    },
+    {
+      "id": "40815",
+      "type": "manga",
+      "links": {
+        "self": "https://kitsu.app/api/edge/manga/40815"
+      },
+      "attributes": {
+        "slug": "jujutsu-kaisen",
+        "titles": {
+          "en": "Jujutsu Kaisen",
+          "en_jp": "Jujutsu Kaisen",
+          "ja_jp": "呪術廻戦"
+        },
+        "canonicalTitle": "Jujutsu Kaisen",
+        "startDate": "2018-03-05",
+        "endDate": "2024-09-30",
+        "subtype": "manga",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "https://media.kitsu.app/manga/40815/poster_image/tiny-1cbc103528e9b4259e27976dff648256.jpeg",
+          "large": "https://media.kitsu.app/manga/40815/poster_image/large-f3a78f082ce3ddfeca300789e0eec170.jpeg",
+          "small": "https://media.kitsu.app/manga/40815/poster_image/small-c333317ee0a509ac980527641fd2eba6.jpeg",
+          "medium": "https://media.kitsu.app/manga/40815/poster_image/medium-767e86e8803c5b52e16892601b448ece.jpeg",
+          "original": "https://media.kitsu.app/manga/40815/poster_image/ae8c69e2b7c147bfc38de1ec07a879a2.png",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "chapterCount": 271
+      }
+    },
+    {
+      "id": "24208",
+      "type": "manga",
+      "links": {
+        "self": "https://kitsu.app/api/edge/manga/24208"
+      },
+      "attributes": {
+        "slug": "nanatsu-no-taizai",
+        "titles": {
+          "en": "The Seven Deadly Sins",
+          "en_jp": "Nanatsu no Taizai",
+          "ja_jp": "七つの大罪"
+        },
+        "canonicalTitle": "Nanatsu no Taizai",
+        "startDate": "2012-10-10",
+        "endDate": "2020-03-25",
+        "subtype": "manga",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "https://media.kitsu.app/manga/poster_images/24208/tiny.jpg",
+          "large": "https://media.kitsu.app/manga/poster_images/24208/large.jpg",
+          "small": "https://media.kitsu.app/manga/poster_images/24208/small.jpg",
+          "medium": "https://media.kitsu.app/manga/poster_images/24208/medium.jpg",
+          "original": "https://media.kitsu.app/manga/poster_images/24208/original.jpg",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "chapterCount": 346
+      }
+    },
+    {
+      "id": "26401",
+      "type": "manga",
+      "links": {
+        "self": "https://kitsu.app/api/edge/manga/26401"
+      },
+      "attributes": {
+        "slug": "tokyo-ghoul-re",
+        "titles": {
+          "en": "Tokyo Ghoul:re",
+          "en_jp": "Tokyo Ghoul:re",
+          "en_us": "Tokyo Ghoul:re",
+          "ja_jp": "東京喰種-トーキョーグール-:re"
+        },
+        "canonicalTitle": "Tokyo Ghoul:re",
+        "startDate": "2014-10-16",
+        "endDate": "2018-07-05",
+        "subtype": "manga",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "https://media.kitsu.app/manga/poster_images/26401/tiny.jpg",
+          "large": "https://media.kitsu.app/manga/poster_images/26401/large.jpg",
+          "small": "https://media.kitsu.app/manga/poster_images/26401/small.jpg",
+          "medium": "https://media.kitsu.app/manga/poster_images/26401/medium.jpg",
+          "original": "https://media.kitsu.app/manga/poster_images/26401/original.png",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "chapterCount": 179
+      }
+    }
+  ],
+  "meta": {
+    "count": 5
+  },
+  "links": {
+    "first": "https://kitsu.app/api/edge/users/1638957/library-entries?fields%5BlibraryEntries%5D=status%2Cprogress%2Cmanga%2CstartedAt%2CfinishedAt%2CratingTwenty&fields%5Bmanga%5D=slug%2Ctitles%2CcanonicalTitle%2CstartDate%2CendDate%2Csubtype%2Cstatus%2CposterImage%2CchapterCount&filter%5Bkind%5D=manga&include=manga&page%5Blimit%5D=500&page%5Boffset%5D=0&sort=manga.titles.canonical",
+    "last": "https://kitsu.app/api/edge/users/1638957/library-entries?fields%5BlibraryEntries%5D=status%2Cprogress%2Cmanga%2CstartedAt%2CfinishedAt%2CratingTwenty&fields%5Bmanga%5D=slug%2Ctitles%2CcanonicalTitle%2CstartDate%2CendDate%2Csubtype%2Cstatus%2CposterImage%2CchapterCount&filter%5Bkind%5D=manga&include=manga&page%5Blimit%5D=500&page%5Boffset%5D=0&sort=manga.titles.canonical"
+  }
+}

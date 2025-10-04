@@ -11,4 +11,9 @@ class AnimeCollectionScreen(
         appBarTitle.assertTextContains(R.string.nav_anime)
             .apply { assertIsDisplayed() }
     }
+
+    fun screenIsNotDisplayed() {
+        appBarTitle.assertTextContains(R.string.nav_anime)
+            .apply { assertIsNotDisplayed() }
+    }
 }
