@@ -131,7 +131,10 @@ private fun Render(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = state.value.screenTitle))
+                    Text(
+                        text = stringResource(id = state.value.screenTitle),
+                        modifier = Modifier.semantics { testTag = SeriesCollectionTags.SeriesCollectionTitle }
+                    )
                 },
                 actions = {
                     IconButton(
@@ -538,6 +541,7 @@ private fun Preview() {
 
 object SeriesCollectionTags {
     const val Root = "SeriesCollectionRoot"
+    const val SeriesCollectionTitle = "SeriesCollectionTitle"
     const val EmptyView = "SeriesCollectionEmptyView"
     const val RefreshContainer = "SeriesCollectionRefreshContainer"
     const val SearchFab = "SeriesCollectionSearchFab"

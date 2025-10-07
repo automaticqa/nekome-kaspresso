@@ -1,0 +1,152 @@
+{
+  "data": [
+    {
+      "id": "1111",
+      "type": "anime",
+      "links": {
+        "self": "https://kitsu.app/api/edge/anime/1111"
+      },
+      "attributes": {
+        "slug": "shingeki-no-kyojin-season-2",
+        "synopsis": "OFFLINE. Eren Jaeger swore to wipe out every last Titan, but in a battle for his life he wound up becoming the thing he hates most. With his new powers, he fights for humanity's freedom facing the monsters that threaten his home. After a bittersweet victory against the Female Titan, Eren finds no time to rest—a horde of Titans is approaching Wall Rose and the battle for humanity continues!\n\n(Source: Funimation)",
+        "titles": {
+          "en": "Attack on Titan Season 2",
+          "en_jp": "Shingeki no Kyojin Season 2",
+          "en_us": "Attack on Titan Season 2",
+          "ja_jp": "進撃の巨人 Season 2"
+        },
+        "canonicalTitle": "Attack on Titan Season 2",
+        "startDate": "2017-04-01",
+        "endDate": "2017-06-17",
+        "subtype": "TV",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "",
+          "large": "",
+          "small": "",
+          "medium": "",
+          "original": "",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "episodeCount": 12
+      }
+    },
+    {
+      "id": "2222",
+      "type": "anime",
+      "links": {
+        "self": "https://kitsu.app/api/edge/anime/2222"
+      },
+      "attributes": {
+        "slug": "shingeki-no-kyojin-season-3",
+        "synopsis": "OFFLINE. After recovering Eren and Historia, the recruits are put under the care of Levi. Stuck out in the middle of nowhere, Hange subjects Eren to a series of experiments in an attempt to find out more about his ability. But when their link to the secrets behind the wall is murdered, the squad must move out and find a new refuge. Except, a figure from Levi's past has his own plans to stop them.\n\n(Source: Funimation)",
+        "titles": {
+          "en": "Attack on Titan Season 3",
+          "en_jp": "Shingeki no Kyojin Season 3",
+          "ja_jp": "進撃の巨人 Season 3"
+        },
+        "canonicalTitle": "Attack on Titan Season 3",
+        "startDate": "2018-07-23",
+        "endDate": "2018-10-15",
+        "subtype": "TV",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "",
+          "large": "",
+          "small": "",
+          "medium": "",
+          "original": "",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "episodeCount": 22
+      }
+    },
+    {
+      "id": "3333",
+      "type": "anime",
+      "links": {
+        "self": "https://kitsu.app/api/edge/anime/3333"
+      },
+      "attributes": {
+        "slug": "shingeki-no-kyojin-season-3-part-2",
+        "synopsis": "OFFLINE. The battle to retake Wall Maria begins now! With Eren's new hardening ability, the Scouts are confident they can seal the wall and take back Shiganshina District. If they succeed, Eren can finally unlock the secrets of the basement—and the world. But danger lies in wait as Reiner, Bertholdt, and the Beast Titan have plans of their own. Could this be humanity's final battle for survival?\n\n(Source: Funimation)",
+        "titles": {
+          "en": "Attack on Titan Season 3 Part 2",
+          "en_jp": "Shingeki no Kyojin Season 3 Part 2",
+          "ja_jp": "進撃の巨人 Season 3 Part 2"
+        },
+        "canonicalTitle": "Attack on Titan Season 3 Part 2",
+        "startDate": "2019-04-29",
+        "endDate": "2019-07-01",
+        "subtype": "TV",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "",
+          "large": "",
+          "small": "",
+          "medium": "",
+          "original": "",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "episodeCount": 10
+      }
+    }
+  ]
+}

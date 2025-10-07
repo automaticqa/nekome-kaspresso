@@ -1,0 +1,311 @@
+{
+  "data": [
+    {
+      "id": "105118415",
+      "type": "libraryEntries",
+      "links": {
+        "self": "https://kitsu.app/api/edge/library-entries/105118415"
+      },
+      "attributes": {
+        "status": "completed",
+        "progress": 25,
+        "startedAt": "2025-09-26T19:34:02.491Z",
+        "finishedAt": "2025-09-26T19:34:02.491Z",
+        "ratingTwenty": null
+      },
+      "relationships": {
+        "anime": {
+          "links": {
+            "self": "https://kitsu.app/api/edge/library-entries/105118415/relationships/anime",
+            "related": "https://kitsu.app/api/edge/library-entries/105118415/anime"
+          },
+          "data": {
+            "type": "anime",
+            "id": "7442"
+          }
+        }
+      }
+    },
+    {
+      "id": "105118424",
+      "type": "libraryEntries",
+      "links": {
+        "self": "https://kitsu.app/api/edge/library-entries/105118424"
+      },
+      "attributes": {
+        "status": "completed",
+        "progress": 10,
+        "startedAt": "2025-09-26T19:35:31.337Z",
+        "finishedAt": "2025-09-26T19:35:31.337Z",
+        "ratingTwenty": null
+      },
+      "relationships": {
+        "anime": {
+          "links": {
+            "self": "https://kitsu.app/api/edge/library-entries/105118424/relationships/anime",
+            "related": "https://kitsu.app/api/edge/library-entries/105118424/anime"
+          },
+          "data": {
+            "type": "anime",
+            "id": "41982"
+          }
+        }
+      }
+    },
+    {
+      "id": "105118427",
+      "type": "libraryEntries",
+      "links": {
+        "self": "https://kitsu.app/api/edge/library-entries/105118427"
+      },
+      "attributes": {
+        "status": "completed",
+        "progress": 24,
+        "startedAt": "2025-09-26T19:36:08.011Z",
+        "finishedAt": "2025-09-26T19:36:08.011Z",
+        "ratingTwenty": null
+      },
+      "relationships": {
+        "anime": {
+          "links": {
+            "self": "https://kitsu.app/api/edge/library-entries/105118427/relationships/anime",
+            "related": "https://kitsu.app/api/edge/library-entries/105118427/anime"
+          },
+          "data": {
+            "type": "anime",
+            "id": "9967"
+          }
+        }
+      }
+    },
+    {
+      "id": "105118423",
+      "type": "libraryEntries",
+      "links": {
+        "self": "https://kitsu.app/api/edge/library-entries/105118423"
+      },
+      "attributes": {
+        "status": "completed",
+        "progress": 1,
+        "startedAt": "2025-09-26T19:35:26.000Z",
+        "finishedAt": "2025-09-26T19:35:26.000Z",
+        "ratingTwenty": null
+      },
+      "relationships": {
+        "anime": {
+          "links": {
+            "self": "https://kitsu.app/api/edge/library-entries/105118423/relationships/anime",
+            "related": "https://kitsu.app/api/edge/library-entries/105118423/anime"
+          },
+          "data": {
+            "type": "anime",
+            "id": "176"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "7442",
+      "type": "anime",
+      "links": {
+        "self": "https://kitsu.app/api/edge/anime/7442"
+      },
+      "attributes": {
+        "slug": "attack-on-titan",
+        "titles": {
+          "en": "Attack on Titan",
+          "en_jp": "Shingeki no Kyojin",
+          "en_us": "Attack on Titan",
+          "ja_jp": "進撃の巨人"
+        },
+        "canonicalTitle": "Attack on Titan",
+        "startDate": "2013-04-07",
+        "endDate": "2013-09-29",
+        "subtype": "TV",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "https://media.kitsu.app/anime/poster_images/7442/tiny.jpg",
+          "large": "https://media.kitsu.app/anime/poster_images/7442/large.jpg",
+          "small": "https://media.kitsu.app/anime/poster_images/7442/small.jpg",
+          "medium": "https://media.kitsu.app/anime/poster_images/7442/medium.jpg",
+          "original": "https://media.kitsu.app/anime/poster_images/7442/original.jpg",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "episodeCount": 25
+      }
+    },
+    {
+      "id": "41982",
+      "type": "anime",
+      "links": {
+        "self": "https://kitsu.app/api/edge/anime/41982"
+      },
+      "attributes": {
+        "slug": "shingeki-no-kyojin-3-part-2",
+        "titles": {
+          "en": "Attack on Titan Season 3 Part 2",
+          "en_jp": "Shingeki no Kyojin Season 3 Part 2",
+          "ja_jp": "進撃の巨人 Season 3 Part 2"
+        },
+        "canonicalTitle": "Attack on Titan Season 3 Part 2",
+        "startDate": "2019-04-29",
+        "endDate": "2019-07-01",
+        "subtype": "TV",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "https://media.kitsu.app/anime/poster_images/41982/tiny.jpg",
+          "large": "https://media.kitsu.app/anime/poster_images/41982/large.jpg",
+          "small": "https://media.kitsu.app/anime/poster_images/41982/small.jpg",
+          "medium": "https://media.kitsu.app/anime/poster_images/41982/medium.jpg",
+          "original": "https://media.kitsu.app/anime/poster_images/41982/original.jpg",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "episodeCount": 10
+      }
+    },
+    {
+      "id": "9967",
+      "type": "anime",
+      "links": {
+        "self": "https://kitsu.app/api/edge/anime/9967"
+      },
+      "attributes": {
+        "slug": "shokugeki-no-souma",
+        "titles": {
+          "en": "Food Wars! Shokugeki no Soma",
+          "en_jp": "Shokugeki no Souma",
+          "en_us": "Food Wars! Shokugeki no Soma",
+          "ja_jp": "食戟のソーマ"
+        },
+        "canonicalTitle": "Shokugeki no Souma",
+        "startDate": "2015-04-04",
+        "endDate": "2015-09-26",
+        "subtype": "TV",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "https://media.kitsu.app/anime/9967/poster_image/tiny-0dc10854928bcf1a2dc8c66641b5f555.jpeg",
+          "large": "https://media.kitsu.app/anime/9967/poster_image/large-a95e716ae5f3567f7cbc01fbac53d3a5.jpeg",
+          "small": "https://media.kitsu.app/anime/9967/poster_image/small-2c2e94b537ca267e1530ecfbca242a37.jpeg",
+          "medium": "https://media.kitsu.app/anime/9967/poster_image/medium-cf9004e57f142075bc50c5765f2301a6.jpeg",
+          "original": "https://media.kitsu.app/anime/9967/poster_image/fd7b3b36fa8e01d97158652d7852065a.jpg",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "episodeCount": 24
+      }
+    },
+    {
+      "id": "176",
+      "type": "anime",
+      "links": {
+        "self": "https://kitsu.app/api/edge/anime/176"
+      },
+      "attributes": {
+        "slug": "spirited-away",
+        "titles": {
+          "en": "Spirited Away",
+          "en_jp": "Sen to Chihiro no Kamikakushi",
+          "ja_jp": "千と千尋の神隠し"
+        },
+        "canonicalTitle": "Spirited Away",
+        "startDate": "2001-07-20",
+        "endDate": "2001-07-20",
+        "subtype": "movie",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "https://media.kitsu.app/anime/poster_images/176/tiny.jpg",
+          "large": "https://media.kitsu.app/anime/poster_images/176/large.jpg",
+          "small": "https://media.kitsu.app/anime/poster_images/176/small.jpg",
+          "medium": "https://media.kitsu.app/anime/poster_images/176/medium.jpg",
+          "original": "https://media.kitsu.app/anime/poster_images/176/original.jpg",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "episodeCount": 1
+      }
+    }
+  ],
+  "meta": {
+    "count": 4
+  },
+  "links": {
+    "first": "https://kitsu.app/api/edge/users/1638957/library-entries?fields%5BlibraryEntries%5D=status%2Cprogress%2Canime%2CstartedAt%2CfinishedAt%2CratingTwenty&fields%5Banime%5D=slug%2Ctitles%2CcanonicalTitle%2CstartDate%2CendDate%2Csubtype%2Cstatus%2CposterImage%2CepisodeCount&filter%5Bkind%5D=anime&include=anime&page%5Blimit%5D=500&page%5Boffset%5D=0&sort=anime.titles.canonical",
+    "last": "https://kitsu.app/api/edge/users/1638957/library-entries?fields%5BlibraryEntries%5D=status%2Cprogress%2Canime%2CstartedAt%2CfinishedAt%2CratingTwenty&fields%5Banime%5D=slug%2Ctitles%2CcanonicalTitle%2CstartDate%2CendDate%2Csubtype%2Cstatus%2CposterImage%2CepisodeCount&filter%5Bkind%5D=anime&include=anime&page%5Blimit%5D=500&page%5Boffset%5D=0&sort=anime.titles.canonical"
+  }
+}

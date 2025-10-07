@@ -16,7 +16,8 @@ android {
         targetSdk = libs.versions.sdk.get().toInt()
         versionCode = 24081508 // Date of build formatted as 'yyMMddHH'
         versionName = "2.2.3"
-        testInstrumentationRunner = "com.chesire.nekome.TestRunner"
+        testInstrumentationRunner = "com.chesire.nekome.kaspresso.KaspressoTestRunner"
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
         resourceConfigurations += listOf("en", "ja")
     }
     buildTypes {
@@ -33,6 +34,9 @@ android {
         named("debug") {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
+            isMinifyEnabled = false
+            isShrinkResources = false
+            isDebuggable = true
         }
         buildTypes.forEach {
             it.resValue("string", "version", defaultConfig.versionName!!)
@@ -46,6 +50,7 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
         animationsDisabled = true
     }
     packaging {
@@ -111,7 +116,9 @@ dependencies {
     implementation(libs.squareup.retrofit2.converter.moshi)
     implementation(libs.squareup.retrofit2)
     implementation(libs.timber)
+    implementation(libs.androidx.compose.ui)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.squareup.leakcanary)
     ksp(libs.androidx.hilt.compiler)
     ksp(libs.google.hilt.android.compiler)
@@ -127,10 +134,32 @@ dependencies {
     androidTestImplementation(libs.androidx.arch.core.testing)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.androidx.test.espresso.contrib)
     androidTestImplementation(libs.androidx.test.espresso.intents)
+    androidTestImplementation(libs.androidx.test.espresso.web)
+    androidTestImplementation(libs.androidx.test.espresso.idling.resource)
     androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.google.hilt.android.testing)
     androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.squareup.okhttp3.mockwebserver)
+    androidTestImplementation(libs.kaspresso)
+    androidTestImplementation(libs.kaspresso.compose.support)
+    androidTestImplementation(libs.kaspresso.allure.support)
+    androidTestImplementation(libs.allure.kotlin.model)
+    androidTestImplementation(libs.allure.kotlin.commons)
+    androidTestImplementation(libs.allure.kotlin.junit4)
+    androidTestImplementation(libs.allure.kotlin.android)
+    androidTestImplementation(libs.kakao.compose)
+    androidTestImplementation(libs.androidx.compose.ui.tooling)
+    androidTestImplementation(libs.androidx.compose.ui.tooling.preview)
+
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.tooling.preview)
+
+
+    androidTestUtil(libs.androidx.test.orchestrator)
     kspAndroidTest(libs.google.hilt.android.compiler)
 }

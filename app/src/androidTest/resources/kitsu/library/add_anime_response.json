@@ -1,0 +1,78 @@
+{
+  "data": {
+    "id": "999001",
+    "type": "libraryEntries",
+    "links": {
+      "self": "https://kitsu.app/api/edge/library-entries/999001"
+    },
+    "attributes": {
+      "status": "current",
+      "progress": 0,
+      "startedAt": null,
+      "finishedAt": null,
+      "ratingTwenty": null
+    },
+    "relationships": {
+      "anime": {
+        "links": {
+          "self": "https://kitsu.app/api/edge/library-entries/999001/relationships/anime",
+          "related": "https://kitsu.app/api/edge/library-entries/999001/anime"
+        },
+        "data": {
+          "type": "anime",
+          "id": "1111"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "1111",
+      "type": "anime",
+      "links": {
+        "self": "https://kitsu.app/api/edge/anime/1111"
+      },
+      "attributes": {
+        "slug": "shingeki-no-kyojin-season-2",
+        "titles": {
+          "en": "Attack on Titan Season 2",
+          "en_jp": "Shingeki no Kyojin Season 2",
+          "ja_jp": "進撃の巨人 Season 2"
+        },
+        "canonicalTitle": "Attack on Titan Season 2",
+        "startDate": "2017-04-01",
+        "endDate": "2017-06-17",
+        "subtype": "TV",
+        "status": "finished",
+        "posterImage": {
+          "tiny": "",
+          "large": "",
+          "small": "",
+          "medium": "",
+          "original": "",
+          "meta": {
+            "dimensions": {
+              "tiny": {
+                "width": 110,
+                "height": 156
+              },
+              "large": {
+                "width": 550,
+                "height": 780
+              },
+              "small": {
+                "width": 284,
+                "height": 402
+              },
+              "medium": {
+                "width": 390,
+                "height": 554
+              }
+            }
+          }
+        },
+        "episodeCount": 12
+      }
+    }
+  ]
+}
