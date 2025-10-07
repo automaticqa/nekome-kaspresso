@@ -1,7 +1,6 @@
 package com.chesire.nekome.kaspresso.screens.collections
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import com.chesire.nekome.app.series.collection.ui.SeriesCollectionTags
 import com.chesire.nekome.kaspresso.screens.BaseScreen

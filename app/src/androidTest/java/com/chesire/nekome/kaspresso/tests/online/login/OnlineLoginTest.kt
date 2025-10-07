@@ -12,7 +12,7 @@ import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onCompose
 import org.junit.Test
 
 @HiltAndroidTest
-class OlineLoginTest : BaseTestSetup(networkMode = NetworkMode.ONLINE) {
+class OnlineLoginTest : BaseTestSetup(networkMode = NetworkMode.ONLINE) {
 
     override val startLoggedIn = false
 

@@ -5,7 +5,6 @@ import androidx.room.Room
 import com.chesire.nekome.database.RoomDB
 import com.chesire.nekome.database.dao.SeriesDao
 import com.chesire.nekome.database.dao.UserDao
-import com.chesire.nekome.injection.DatabaseModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -19,11 +18,6 @@ import javax.inject.Singleton
     replaces = [DatabaseModule::class]
 )
 object TestDatabaseModule {
-
-    init {
-        println("okhttp.OkHttpClient: TestDatabaseModule loaded")
-    }
-
     @Provides
     @Singleton
     fun provideInMemoryDatabase(

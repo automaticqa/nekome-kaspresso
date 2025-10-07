@@ -70,13 +70,6 @@ object MockWebServerManager {
         queryParams: Map<String, String> = emptyMap()
     ) = mockRequest(GET, requestPath, responseJsonFile, responseCode, repeatable, queryParams)
 
-    fun mockDelete(
-        requestPath: String,
-        responseJsonFile: String = "",
-        responseCode: Int = HTTP_204_NO_CONTENT,
-        repeatable: Boolean = false,
-    ) = mockRequest(DELETE, requestPath, responseJsonFile, responseCode, repeatable)
-
     fun mockRequest(
         requestMethod: String,
         requestPath: String,
@@ -113,6 +106,5 @@ object MockWebServerManager {
 
     const val GET = "GET"
     const val POST = "POST"
-    const val PUT = "PUT"
     const val DELETE = "DELETE"
 }

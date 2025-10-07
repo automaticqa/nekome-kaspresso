@@ -110,5 +110,4 @@ abstract class UITest {
         // Not the nicest solution, but it keeps compose views a bit happier when they launch.
         Thread.sleep(200)
     }
-
 }
